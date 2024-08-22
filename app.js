@@ -2,9 +2,20 @@ const express = require("express");
 const bodyParser = require("body-parser");
 var path = require('path');
 
+const mongoose = require('mongoose');
+
 var appRoutes = require('./routes/app');
 
 const app = express();
+
+// Conexão com o MongoDB
+mongoose.connect('mongodb://127.0.0.1:27017/node-angular')
+  .then(() => {
+    console.log('Conexão com o MongoDB estabelecida com sucesso.');
+  })
+  .catch((error) => {
+    console.error('Erro na conexão com o MongoDB:', error);
+  })
 
 // view engine setup 
 app.set('views', path.join(__dirname, 'views'));

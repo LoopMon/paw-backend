@@ -4,17 +4,19 @@ var path = require('path');
 
 const mongoose = require('mongoose');
 
-var appRoutes = require('./routes/app');
+const messageRoutes = require('./routes/messages')
+const appRoutes = require('./routes/app');
 
-const app = express();
+const app = express(); 
 
 // Conexão com o MongoDB
-mongoose.connect('mongodb://127.0.0.1:27017/node-angular')
+// mongodb://127.0.0.1:27017/node-angular
+mongoose.connect('mongodb+srv://moonzera:mOOn0812@paw.3sp7v.mongodb.net/?retryWrites=true&w=majority&appName=PAW')
   .then(() => {
-    console.log('Conexão com o MongoDB estabelecida com sucesso.');
+    console.log('Conexão com o MongoDB Atlas estabelecida com sucesso.');
   })
   .catch((error) => {
-    console.error('Erro na conexão com o MongoDB:', error);
+    console.error('Erro na conexão com o MongoDB Atlas:', error);
   })
 
 // view engine setup 
@@ -34,6 +36,7 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use('/message', messageRoutes)
 app.use('/', appRoutes);
 
 // catch 404 and forward to error handler

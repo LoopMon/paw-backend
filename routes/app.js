@@ -7,19 +7,15 @@ router.get('/', (req, res, next) => {
 });
 
 router.get('/node-mongodb-mongoose-user', async (req, res, next) => {
-    try {
-        const userFind = await User.findOne({})
+    const userFind = await User.findOne({}).sort({ _id: -1})
 
-        res.render('node', {
-            firstNameV: userFind.firstName,
-            lastNameV: userFind.lastName,
-            passwordV: userFind.password,
-            emailV: userFind.email,
-            messagesV: userFind.messages
-        })
-    } catch (err) {
-        return res.send('Erro!!!')
-    }
+    res.render('node', {
+        firstNameV: userFind.firstName,
+        lastNameV: userFind.lastName,
+        passwordV: userFind.password,
+        emailV: userFind.email,
+        messagesV: userFind.messages
+    })
 })
 
 router.post('/node-mongodb-mongoose-user', async (req, res, next) => {

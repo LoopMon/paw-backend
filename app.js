@@ -7,11 +7,16 @@ const mongoose = require('mongoose');
 const messageRoutes = require('./routes/messages')
 const appRoutes = require('./routes/app');
 
+require('dotenv').config()
+
 const app = express(); 
 
+const dbUser = process.env.DB_USER
+const dbPassword = process.env.DB_PASS
+const dbName = 'chat'
 // Conexão com o MongoDB
 // mongodb://127.0.0.1:27017/node-angular
-mongoose.connect('mongodb+srv://moonzera:mOOn0812@paw.3sp7v.mongodb.net/?retryWrites=true&w=majority&appName=PAW')
+mongoose.connect(`mongodb+srv://${dbUser}:${dbPassword}@paw.3sp7v.mongodb.net/${dbName}?retryWrites=true&w=majority&appName=PAW`)
   .then(() => {
     console.log('Conexão com o MongoDB Atlas estabelecida com sucesso.');
   })

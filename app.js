@@ -5,23 +5,19 @@ var path = require('path');
 const mongoose = require('mongoose');
 
 const messageRoutes = require('./routes/messages')
+const userRoutes = require('./routes/user')
 const appRoutes = require('./routes/app');
-
-require('dotenv').config()
 
 const app = express(); 
 
-const dbUser = process.env.DB_USER
-const dbPassword = process.env.DB_PASS
-const dbName = 'chat'
 // Conexão com o MongoDB
-// mongodb://127.0.0.1:27017/node-angular
-mongoose.connect(`mongodb+srv://${dbUser}:${dbPassword}@paw.3sp7v.mongodb.net/${dbName}?retryWrites=true&w=majority&appName=PAW`)
+// C:/'Program Files'/MongoDB/Server/8.0/bin/mongod.exe --dbpath 
+mongoose.connect('mongodb://127.0.0.1:27017/node-angular')
   .then(() => {
-    console.log('Conexão com o MongoDB Atlas estabelecida com sucesso.');
+    console.log('Conexão com o MongoDB estabelecida com sucesso.');
   })
   .catch((error) => {
-    console.error('Erro na conexão com o MongoDB Atlas:', error);
+    console.error('Erro na conexão com o MongoDB:', error);
   })
 
 // view engine setup 
@@ -41,6 +37,7 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use('/user', userRoutes)
 app.use('/message', messageRoutes)
 app.use('/', appRoutes);
 

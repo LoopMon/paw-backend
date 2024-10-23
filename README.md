@@ -61,4 +61,5 @@ Se você quiser contribuir com o projeto, sinta-se à vontade para abrir um pull
 # Autores:
 
 - [@loopmon](https://github.com/loopmon)
+- [@VictorAugusto-SS](https://github.com/VictorAugusto-SS)
 - [@victorcssiano](https://github.com/victorcssiano)
